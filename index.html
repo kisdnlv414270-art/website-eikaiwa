@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JUST SAY IT｜瞬間英作文 使い方ダイジェスト</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800;900&family=Inter:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  deck-stage:not(:defined){visibility:hidden}
+
+  :root{
+    --blue:#1E88E5;
+    --blue-d:#1565C0;
+    --blue-dd:#0a5f8f;
+    --orange:#F7931E;
+    --green:#22C55E;
+    --purple:#9C27B0;
+    --ink:#15233b;
+    --muted:#5b6b80;
+    --paper:#ffffff;
+    --tint:#eef5fe;
+    --app:#07090d;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  html,body{background:#0a0a0a;}
+
+  deck-stage{
+    font-family:'Noto Sans JP','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+
+  .slide{
+    width:100%;height:100%;
+    display:flex;flex-direction:column;
+    overflow:hidden;
+    background:var(--paper);
+    color:var(--ink);
+  }
+  .slide.dark{ background:var(--app); color:#fff; }
+  .slide.dark::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(55% 40% at 16% 14%, rgba(30,136,229,0.26) 0%, rgba(30,136,229,0) 60%),
+      radial-gradient(50% 36% at 88% 12%, rgba(247,147,30,0.20) 0%, rgba(247,147,30,0) 60%),
+      radial-gradient(60% 45% at 72% 96%, rgba(34,197,94,0.16) 0%, rgba(34,197,94,0) 60%);
+  }
+
+  .pad{ padding:128px 96px; position:relative; z-index:1; flex:1; display:flex; flex-direction:column; }
+
+  /* ---------- typography ---------- */
+  .eyebrow{
+    font-family:'Inter',sans-serif;
+    font-weight:800;letter-spacing:.32em;text-transform:uppercase;
+    font-size:28px;color:var(--blue);
+  }
+  .dark .eyebrow{ color:#8fc0ff; }
+  .eyebrow.warm{ color:var(--orange); }
+  .eyebrow.grass{ color:var(--green); }
+
+  h1.title{
+    font-weight:900;letter-spacing:-0.03em;line-height:1.02;
+    font-size:140px;
+  }
+  h2.title{
+    font-weight:900;letter-spacing:-0.025em;line-height:1.06;
+    font-size:98px;
+  }
+  .grad{
+    background:linear-gradient(125deg,#0a5f8f 0%,#1e88e5 42%,#42a5f5 72%,#1e88e5 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .dark .grad{
+    background:linear-gradient(125deg,#ffffff 0%,#cfe6ff 48%,#8fc0ff 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .lead{ font-size:40px;line-height:1.6;color:var(--muted);font-weight:500; }
+  .dark .lead{ color:rgba(255,255,255,0.66); }
+
+  .brandmark{
+    font-family:'Inter',sans-serif;font-weight:900;letter-spacing:-0.01em;
+    font-size:40px;color:var(--blue);white-space:nowrap;
+  }
+  .eyebrow{ white-space:nowrap; }
+
+  /* numbered badge like the app */
+  .badge{
+    flex:none;width:64px;height:64px;border-radius:50%;
+    background:var(--ink);color:#fff;font-family:'Inter',sans-serif;font-weight:800;
+    font-size:34px;display:flex;align-items:center;justify-content:center;
+  }
+  .dark .badge{ background:#fff;color:var(--app); }
+  .badge.b-blue{background:var(--blue)}
+  .badge.b-orange{background:var(--orange)}
+  .badge.b-green{background:var(--green)}
+
+  /* phone frame */
+  .phone{
+    --pw:380px;flex:none;width:var(--pw);aspect-ratio:1260/2430;
+    background:#0c0c0e;border:11px solid #0c0c0e;border-radius:46px;overflow:hidden;position:relative;
+    box-shadow:0 40px 80px -26px rgba(0,0,0,0.55), inset 0 0 0 2px rgba(255,255,255,0.07);
+  }
+  .dark .phone{ box-shadow:0 44px 90px -24px rgba(0,0,0,0.8), inset 0 0 0 2px rgba(255,255,255,0.10); }
+  .phone img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;border-radius:36px;}
+
+  .chip{
+    display:inline-flex;align-items:center;gap:14px;
+    font-size:30px;font-weight:700;color:var(--ink);
+    background:var(--tint);border-radius:999px;padding:16px 30px;
+  }
+  .dark .chip{ background:rgba(255,255,255,0.08);color:#fff; }
+
+  .pill{
+    display:inline-flex;align-items:center;gap:16px;
+    font-weight:800;font-size:26px;letter-spacing:.06em;
+    color:var(--blue);background:#e8f2fd;border-radius:999px;padding:14px 30px;
+  }
+
+  .arrow{ color:var(--blue);flex:none; }
+  .dark .arrow{ color:#8fc0ff; }
+
+  .ico{ width:64px;height:64px;flex:none; }
+
+  .footline{
+    font-size:30px;font-weight:700;color:var(--ink);
+    border-left:6px solid var(--blue);padding:8px 0 8px 28px;line-height:1.5;
+  }
+  .dark .footline{ color:#fff;border-color:#8fc0ff; }
+
+  .kicker-strong{ color:var(--blue);font-weight:800; }
+  .dark .kicker-strong{ color:#8fc0ff; }
+
+  /* ---------- autoplay controls ---------- */
+  .ap-progress{
+    position:fixed;top:0;left:0;right:0;height:6px;z-index:60;
+    background:rgba(255,255,255,0.16);
+  }
+  .ap-progress > i{
+    display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:left;
+    background:linear-gradient(90deg,#1E88E5,#42a5f5);
+  }
+  .ap-btn{
+    position:fixed;top:18px;right:18px;z-index:61;
+    display:flex;align-items:center;gap:9px;
+    background:rgba(12,14,18,0.66);color:#fff;
+    border:1px solid rgba(255,255,255,0.22);border-radius:999px;
+    padding:9px 17px 9px 14px;cursor:pointer;
+    font-family:'Inter','Noto Sans JP',sans-serif;font-weight:700;font-size:15px;letter-spacing:.01em;
+    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+    transition:background .15s ease, opacity .3s ease;
+  }
+  .ap-btn:hover{ background:rgba(12,14,18,0.9); }
+  .ap-btn svg{ width:16px;height:16px;display:block; }
+  .ap-btn .ic-pause{ display:inline; }
+  .ap-btn .ic-play{ display:none; }
+  .ap-btn[data-paused] .ic-pause{ display:none; }
+  .ap-btn[data-paused] .ic-play{ display:inline; }
+  @media print{ .ap-progress, .ap-btn{ display:none !important; } }
+
+  /* ---------- entrance animations (driven by deck-stage's data-deck-active) ---------- */
+  @media (prefers-reduced-motion: no-preference){
+    .reveal{ will-change:transform,opacity; }
+    section[data-deck-active] .reveal{
+      animation: rvUp .72s cubic-bezier(.2,.72,.25,1) both;
+      animation-delay: calc(var(--i,0) * .08s + .05s);
+    }
+    section[data-deck-active] .reveal.r-left  { animation-name: rvLeft; }
+    section[data-deck-active] .reveal.r-right { animation-name: rvRight; }
+    section[data-deck-active] .reveal.r-scale { animation-name: rvScale; }
+    section[data-deck-active] .reveal.r-phone { animation-name: rvPhone; animation-duration:.9s; }
+
+    /* continuous flourishes — only while the slide is on screen */
+    section[data-deck-active] .loop-float { animation: flo 4.5s ease-in-out infinite; }
+    section[data-deck-active] .loop-pulse { animation: pul 2.8s ease-in-out infinite; }
+    section[data-deck-active] .draw-ring  { animation: draw 1.15s ease-out .4s both; }
+
+    @keyframes rvUp    { from{opacity:0; transform:translateY(40px)}  to{opacity:1; transform:none} }
+    @keyframes rvLeft  { from{opacity:0; transform:translateX(-48px)} to{opacity:1; transform:none} }
+    @keyframes rvRight { from{opacity:0; transform:translateX(48px)}  to{opacity:1; transform:none} }
+    @keyframes rvScale { from{opacity:0; transform:scale(.84)}        to{opacity:1; transform:none} }
+    @keyframes rvPhone { from{opacity:0; transform:translateY(72px) scale(.95)} to{opacity:1; transform:none} }
+    @keyframes flo     { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
+    @keyframes pul     { 0%,100%{transform:scale(1)} 50%{transform:scale(1.045)} }
+    @keyframes draw    { from{stroke-dashoffset:100} to{stroke-dashoffset:0} }
+  }
+  /* never let the reveal hide content in print/PDF export */
+  @media print{
+    .reveal{ opacity:1 !important; animation:none !important; transform:none !important; }
+  }
+</style>
+</head>
+<body>
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#1E88E5"/>
+    <text x="50" y="44" font-family="Inter,sans-serif" font-size="15" font-weight="900" fill="#fff" text-anchor="middle">JUST</text>
+    <text x="50" y="64" font-family="Inter,sans-serif" font-size="15" font-weight="900" fill="#cfe6ff" text-anchor="middle">SAY IT</text>
+  </svg>
+</template>
+<deck-stage width="1080" height="1920">
+
+  <!-- ============ 1 · COVER ============ -->
+  <section data-label="表紙" data-dur="5200">
+    <div class="slide">
+      <div class="pad" style="justify-content:space-between;padding-bottom:96px;">
+        <div>
+          <div style="display:flex;align-items:center;gap:18px;">
+            <span class="brandmark reveal" style="--i:0;">JUST SAY IT</span>
+          </div>
+          <div class="eyebrow reveal" style="--i:1;margin-top:54px;">はじめての方へ · 使い方ダイジェスト</div>
+          <h1 class="title grad reveal" style="--i:2;margin-top:26px;">瞬間<br>英作文</h1>
+          <p class="lead reveal" style="--i:3;margin-top:38px;max-width:760px;">
+            中学英語で、まず言える。<br>
+            <span class="kicker-strong">聞いて、口に出すだけ。</span>のかんたん英会話トレーニング。
+          </p>
+          <div style="display:flex;gap:18px;margin-top:46px;flex-wrap:wrap;">
+            <span class="chip reveal" style="--i:5;">✓ 登録不要・無料</span>
+            <span class="chip reveal" style="--i:6;">✓ 1回10分から</span>
+            <span class="chip reveal" style="--i:7;">✓ 聞き流しOK</span>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:center;align-items:flex-end;">
+          <div class="phone reveal r-phone" style="--i:4;--pw:520px;"><img src="assets/app/IMG_9952.png" alt="ホーム画面"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2 · CONCEPT ============ -->
+  <section data-label="瞬間英作文とは" data-dur="7000">
+    <div class="slide">
+      <div class="pad">
+        <div class="eyebrow reveal" style="--i:0;">CONCEPT</div>
+        <h2 class="title grad reveal" style="--i:1;margin-top:22px;">瞬間英作文って？</h2>
+        <p class="lead reveal" style="--i:2;margin-top:34px;max-width:880px;">
+          日本語を見て（聞いて）、<span class="kicker-strong">パッと英語で言う</span>。
+          たったそれだけのトレーニングです。
+        </p>
+
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:72px;margin-top:20px;">
+          <div style="display:flex;align-items:center;gap:22px;flex-wrap:nowrap;">
+            <div class="pill reveal r-scale" style="--i:3;font-size:25px;padding:14px 26px;white-space:nowrap;">① 日本語が流れる</div>
+            <svg class="arrow reveal" style="--i:4;" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+            <div class="pill reveal r-scale" style="--i:5;font-size:25px;padding:14px 26px;white-space:nowrap;color:var(--orange);background:#fff1e0;">② 8秒で口に出す</div>
+            <svg class="arrow reveal" style="--i:6;" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+            <div class="pill reveal r-scale" style="--i:7;font-size:25px;padding:14px 26px;white-space:nowrap;color:var(--green);background:#e7f8ee;">③ 答え合わせ</div>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:56px;">
+            <div class="reveal r-scale" style="--i:5;flex:none;">
+              <div class="loop-float" style="width:280px;height:280px;border-radius:50%;
+                  background:linear-gradient(135deg,#1e7a96,#2ba8cc);
+                  display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;
+                  box-shadow:0 30px 60px -22px rgba(30,122,150,0.7);">
+                <div style="font-family:'Inter';font-weight:900;font-size:118px;line-height:1;">8</div>
+                <div style="font-weight:800;font-size:34px;letter-spacing:.1em;margin-top:-4px;">秒ルール</div>
+              </div>
+            </div>
+            <div class="reveal" style="--i:7;flex:1;">
+              <p style="font-size:46px;font-weight:900;line-height:1.4;letter-spacing:-0.02em;">
+                「考えてから話す」を、<br>
+                <span class="grad">「話しながら考える」</span>へ。
+              </p>
+              <p class="lead" style="margin-top:24px;font-size:33px;">
+                この瞬発力が、本物の会話で効いてくる。<br>
+                中学英語だけで、ビジネスの8割は言えます。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3 · START (3 STEPS) ============ -->
+  <section data-label="かんたんスタート" data-dur="7000">
+    <div class="slide" style="background:linear-gradient(180deg,#ffffff 0%,#eef5fe 100%);">
+      <div class="pad">
+        <div class="eyebrow reveal" style="--i:0;">EASY START</div>
+        <h2 class="title grad reveal" style="--i:1;margin-top:22px;">選ぶだけ、3ステップ。</h2>
+        <p class="lead reveal" style="--i:2;margin-top:30px;">むずかしい設定も会員登録もなし。順番に選んで「始める」だけ。</p>
+
+        <div style="flex:1;display:flex;gap:64px;align-items:center;margin-top:48px;">
+          <div class="phone reveal r-phone" style="--i:2;--pw:440px;"><img src="assets/app/IMG_9953.png" alt="設定画面"></div>
+          <div style="flex:1;display:flex;flex-direction:column;gap:40px;">
+            <div class="reveal r-left" style="--i:3;display:flex;gap:28px;align-items:flex-start;">
+              <span class="badge">1</span>
+              <div>
+                <div style="font-size:44px;font-weight:900;letter-spacing:-0.02em;">何をする？</div>
+                <div class="lead" style="font-size:32px;margin-top:8px;">ドリル / 受け答え / テスト から選ぶ</div>
+              </div>
+            </div>
+            <div class="reveal r-left" style="--i:4;display:flex;gap:28px;align-items:flex-start;">
+              <span class="badge">2</span>
+              <div>
+                <div style="font-size:44px;font-weight:900;letter-spacing:-0.02em;">職種を選ぶ</div>
+                <div class="lead" style="font-size:32px;margin-top:8px;">製造業 / 会議 / 出張 — 現場の英語が出題</div>
+              </div>
+            </div>
+            <div class="reveal r-left" style="--i:5;display:flex;gap:28px;align-items:flex-start;">
+              <span class="badge">3</span>
+              <div>
+                <div style="font-size:44px;font-weight:900;letter-spacing:-0.02em;">レベル＆時間</div>
+                <div class="lead" style="font-size:32px;margin-top:8px;">Lv.1〜3 と 10／20／30分から</div>
+              </div>
+            </div>
+            <div class="footline reveal" style="--i:6;margin-top:6px;">あとはボタンを押すだけ。今日の10分から。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4 · 3 MODES OVERVIEW ============ -->
+  <section data-label="3つのモード" data-dur="6500">
+    <div class="slide">
+      <div class="pad">
+        <div class="eyebrow reveal" style="--i:0;">3 MODES</div>
+        <h2 class="title grad reveal" style="--i:1;margin-top:22px;">3つのモードで<br>口を動かす。</h2>
+        <p class="lead reveal" style="--i:2;margin-top:30px;">今日の気分で、ひとつ選べばOK。</p>
+
+        <div style="flex:1;display:flex;flex-direction:column;gap:30px;justify-content:center;margin-top:30px;">
+          <!-- drill -->
+          <div class="reveal r-left" style="--i:3;display:flex;align-items:center;gap:36px;background:var(--tint);border-radius:28px;padding:38px 44px;border-left:10px solid var(--blue);">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="2.5" y="13.5" width="4.5" height="7" rx="2"/><rect x="17" y="13.5" width="4.5" height="7" rx="2"/></svg>
+            <div style="flex:1;">
+              <div style="font-size:46px;font-weight:900;letter-spacing:-0.02em;">ドリル <span style="font-family:'Inter';font-size:26px;color:var(--blue);font-weight:800;letter-spacing:.1em;">DRILL</span></div>
+              <div class="lead" style="font-size:31px;margin-top:4px;">聞いて、口に出す。サイクルをひたすら回す。</div>
+            </div>
+          </div>
+          <!-- reply -->
+          <div class="reveal r-left" style="--i:4;display:flex;align-items:center;gap:36px;background:#e7f8ee;border-radius:28px;padding:38px 44px;border-left:10px solid var(--green);">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/><path d="M8.5 21h7"/></svg>
+            <div style="flex:1;">
+              <div style="font-size:46px;font-weight:900;letter-spacing:-0.02em;">受け答え <span style="font-family:'Inter';font-size:26px;color:var(--green);font-weight:800;letter-spacing:.1em;">REPLY</span></div>
+              <div class="lead" style="font-size:31px;margin-top:4px;">質問されて、その場で英語で返す。</div>
+            </div>
+          </div>
+          <!-- test -->
+          <div class="reveal r-left" style="--i:5;display:flex;align-items:center;gap:36px;background:#fff1e0;border-radius:28px;padding:38px 44px;border-left:10px solid var(--orange);">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M8.5 13l1.6 1.6L13.5 11.5"/><path d="M9 17.5h6"/></svg>
+            <div style="flex:1;">
+              <div style="font-size:46px;font-weight:900;letter-spacing:-0.02em;">テスト <span style="font-family:'Inter';font-size:26px;color:var(--orange);font-weight:800;letter-spacing:.1em;">TEST</span></div>
+              <div class="lead" style="font-size:31px;margin-top:4px;">AIが採点。成長を数字で確認できる。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5 · DRILL ============ -->
+  <section data-label="ドリルの流れ" data-dur="7000">
+    <div class="slide dark">
+      <div class="pad">
+        <div class="eyebrow reveal" style="--i:0;">MODE 01 · DRILL</div>
+        <h2 class="title grad reveal" style="--i:1;margin-top:20px;font-size:92px;">ドリル<br>聞いて、口に出す。</h2>
+        <p class="lead reveal" style="--i:2;margin-top:26px;">日本語 → 8秒で英語 → 正解。この3つが流れるだけ。</p>
+
+        <div style="flex:1;display:flex;align-items:center;justify-content:center;gap:16px;margin-top:24px;">
+          <div class="reveal r-phone" style="--i:3;display:flex;flex-direction:column;align-items:center;">
+            <div class="phone" style="--pw:240px;"><img src="assets/app/IMG_9958.png" alt="日本語が流れる"></div>
+            <div class="chip" style="margin-top:26px;font-size:24px;padding:12px 22px;">① 日本語が流れる</div>
+          </div>
+          <svg class="arrow reveal" style="--i:4;" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+          <div class="reveal r-phone" style="--i:5;display:flex;flex-direction:column;align-items:center;">
+            <div class="phone" style="--pw:240px;"><img src="assets/app/IMG_9959.png" alt="英語で答えて"></div>
+            <div class="chip" style="margin-top:26px;font-size:24px;padding:12px 22px;background:rgba(247,147,30,0.18);color:#ffd9a8;">② 口に出す</div>
+          </div>
+          <svg class="arrow reveal" style="--i:6;" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+          <div class="reveal r-phone" style="--i:7;display:flex;flex-direction:column;align-items:center;">
+            <div class="phone" style="--pw:240px;"><img src="assets/app/IMG_9960.png" alt="正解の英文"></div>
+            <div class="chip" style="margin-top:26px;font-size:24px;padding:12px 22px;background:rgba(34,197,94,0.18);color:#aef0c6;">③ 答え合わせ</div>
+          </div>
+        </div>
+
+        <div class="footline reveal" style="--i:8;margin-top:20px;">画面を見なくてもOK。イヤホンだけで完結します。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6 · REPLY ============ -->
+  <section data-label="受け答えの流れ" data-dur="6500">
+    <div class="slide dark">
+      <div class="pad">
+        <div class="eyebrow grass reveal" style="--i:0;">MODE 02 · REPLY</div>
+        <h2 class="title grad reveal" style="--i:1;margin-top:20px;font-size:92px;">受け答え<br>聞かれて、返す。</h2>
+        <p class="lead reveal" style="--i:2;margin-top:26px;">投げられた質問に、その場で英語で答える。本番の予習に。</p>
+
+        <div style="flex:1;display:flex;align-items:center;justify-content:center;gap:56px;margin-top:24px;">
+          <div class="reveal r-phone" style="--i:3;text-align:center;">
+            <div class="phone" style="--pw:372px;"><img src="assets/app/IMG_9961.png" alt="英語で質問される"></div>
+            <div class="chip" style="margin-top:32px;">① 英語で質問される</div>
+          </div>
+          <div class="reveal" style="--i:4;display:flex;flex-direction:column;align-items:center;gap:18px;">
+            <div style="font-size:30px;font-weight:800;color:#8fc0ff;white-space:nowrap;">自分で<br>答える</div>
+            <svg class="arrow" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+          </div>
+          <div class="reveal r-phone" style="--i:5;text-align:center;">
+            <div class="phone" style="--pw:372px;"><img src="assets/app/IMG_9962.png" alt="模範回答"></div>
+            <div class="chip" style="margin-top:32px;background:rgba(34,197,94,0.18);color:#aef0c6;">② 模範回答と比べる</div>
+          </div>
+        </div>
+
+        <div class="footline reveal" style="--i:6;margin-top:20px;border-color:#aef0c6;">模範回答とのズレを見れば、次はもっと言えるように。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7 · TEST ============ -->
+  <section data-label="テスト" data-dur="7000">
+    <div class="slide" style="background:linear-gradient(180deg,#ffffff 0%,#fff5ea 100%);">
+      <div class="pad">
+        <div class="eyebrow warm reveal" style="--i:0;">MODE 03 · TEST</div>
+        <h2 class="title grad reveal" style="--i:1;margin-top:22px;font-size:92px;">テスト<br>AIが採点。</h2>
+        <p class="lead reveal" style="--i:2;margin-top:30px;max-width:820px;">
+          自分の英語を録音すると、AIが評価。「言えたつもり」を数字で確認できます。
+        </p>
+
+        <div style="flex:1;display:flex;align-items:center;gap:64px;margin-top:30px;">
+          <div style="flex:1;display:flex;flex-direction:column;gap:40px;">
+            <div class="reveal r-left" style="--i:3;display:flex;gap:26px;align-items:center;">
+              <span class="badge b-orange">1</span>
+              <div style="font-size:38px;font-weight:800;letter-spacing:-0.02em;white-space:nowrap;">話して、録音する</div>
+            </div>
+            <div class="reveal r-left" style="--i:4;display:flex;gap:26px;align-items:center;">
+              <span class="badge b-orange">2</span>
+              <div style="font-size:38px;font-weight:800;letter-spacing:-0.02em;white-space:nowrap;">AIが評価する</div>
+            </div>
+            <div class="reveal r-left" style="--i:5;display:flex;gap:26px;align-items:center;">
+              <span class="badge b-orange">3</span>
+              <div style="font-size:38px;font-weight:800;letter-spacing:-0.02em;white-space:nowrap;">弱点が見える</div>
+            </div>
+            <div class="footline reveal" style="--i:6;border-color:var(--orange);margin-top:8px;">成長が見えると、続けるのが楽しくなる。</div>
+          </div>
+
+          <div class="reveal r-scale" style="--i:4;flex:none;width:380px;background:#fff;border-radius:34px;padding:54px 44px;
+              box-shadow:0 40px 80px -28px rgba(247,147,30,0.5);text-align:center;border:1px solid #fde3c4;">
+            <div style="font-family:'Inter';font-weight:800;letter-spacing:.2em;font-size:24px;color:var(--orange);">AI SCORE</div>
+            <div style="position:relative;width:240px;height:240px;margin:24px auto 0;">
+              <svg viewBox="0 0 36 36" style="width:240px;height:240px;display:block;">
+                <path d="M18 2.5a15.5 15.5 0 1 1 0 31 15.5 15.5 0 0 1 0-31" fill="none" stroke="#f3e7d8" stroke-width="3.4"/>
+                <path class="draw-ring" pathLength="100" stroke-dasharray="100" d="M18 2.5a15.5 15.5 0 0 1 13.4 23.3" fill="none" stroke="var(--orange)" stroke-width="3.4" stroke-linecap="round"/>
+              </svg>
+              <div data-count="82" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Inter';font-weight:900;font-size:88px;color:var(--ink);line-height:1;">82</div>
+            </div>
+            <div style="font-size:30px;font-weight:800;color:var(--green);margin-top:22px;">よく言えています 👍</div>
+          </div>
+        </div>
+        <p class="reveal" style="--i:7;font-size:24px;color:var(--muted);margin-top:10px;">※ 表示はイメージです</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8 · ANYWHERE ============ -->
+  <section data-label="いつでもどこでも" data-dur="7000">
+    <div class="slide">
+      <div class="pad">
+        <div class="eyebrow reveal" style="--i:0;">ANYTIME · ANYWHERE</div>
+        <h2 class="title grad reveal" style="--i:1;margin-top:22px;">スキマ時間が、<br>そのまま練習場に。</h2>
+        <p class="lead reveal" style="--i:2;margin-top:30px;max-width:880px;">
+          机に向かう必要も、画面を見続ける必要もありません。<br>
+          <span class="kicker-strong">イヤホン1つ</span>で、生活のあらゆる時間が練習になります。
+        </p>
+
+        <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-content:center;margin-top:30px;">
+          <div class="reveal r-scale" style="--i:3;background:var(--tint);border-radius:28px;padding:44px;display:flex;align-items:center;gap:30px;">
+            <div style="font-size:80px;line-height:1;">🚃</div>
+            <div><div style="font-size:42px;font-weight:900;">通勤電車</div><div class="lead" style="font-size:30px;">片道20分が、20問のドリルに。</div></div>
+          </div>
+          <div class="reveal r-scale" style="--i:4;background:var(--tint);border-radius:28px;padding:44px;display:flex;align-items:center;gap:30px;">
+            <div style="font-size:80px;line-height:1;">🍳</div>
+            <div><div style="font-size:42px;font-weight:900;">朝の支度</div><div class="lead" style="font-size:30px;">着替えと朝食の間に、10問。</div></div>
+          </div>
+          <div class="reveal r-scale" style="--i:5;background:var(--tint);border-radius:28px;padding:44px;display:flex;align-items:center;gap:30px;">
+            <div style="font-size:80px;line-height:1;">🏃</div>
+            <div><div style="font-size:42px;font-weight:900;">ランニング</div><div class="lead" style="font-size:30px;">30分の有酸素が、学習時間に。</div></div>
+          </div>
+          <div class="reveal r-scale" style="--i:6;background:var(--tint);border-radius:28px;padding:44px;display:flex;align-items:center;gap:30px;">
+            <div style="font-size:80px;line-height:1;">🎧</div>
+            <div><div style="font-size:42px;font-weight:900;">聞き流し</div><div class="lead" style="font-size:30px;">見なくてOK。口を動かすだけ。</div></div>
+          </div>
+        </div>
+
+        <div class="footline reveal" style="--i:7;margin-top:30px;">繰り返すほど、英語が「口から出てくる」ようになります。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 9 · CTA ============ -->
+  <section data-label="今日から" data-dur="6000">
+    <div class="slide dark">
+      <div class="pad" style="justify-content:center;text-align:center;align-items:center;">
+        <div class="eyebrow reveal" style="--i:0;letter-spacing:.24em;">START TODAY</div>
+        <h2 class="title grad reveal r-scale" style="--i:1;margin-top:28px;font-size:124px;">今日から、<br>口に出す。</h2>
+        <p class="lead reveal" style="--i:2;margin-top:40px;font-size:42px;max-width:820px;">
+          話せないのは、知らないからじゃない。<br>
+          <span style="color:#fff;font-weight:800;">口に出していないだけ。</span>
+        </p>
+
+        <div class="reveal" style="--i:3;margin-top:64px;display:inline-flex;flex-direction:column;align-items:center;gap:26px;">
+          <div class="loop-pulse" style="display:inline-flex;align-items:center;gap:20px;
+              background:linear-gradient(135deg,#1E88E5,#1565C0);color:#fff;
+              font-size:46px;font-weight:800;letter-spacing:-0.01em;
+              padding:34px 70px;border-radius:999px;
+              box-shadow:0 30px 70px -20px rgba(30,136,229,0.8);">
+            今すぐ始める（無料）
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+          </div>
+          <div class="lead" style="font-size:30px;">登録不要・1セッション10分から</div>
+        </div>
+
+        <div class="reveal" style="--i:4;margin-top:80px;display:flex;align-items:center;gap:18px;">
+          <span class="brandmark" style="color:#8fc0ff;">JUST SAY IT</span>
+          <span style="color:rgba(255,255,255,0.4);font-size:32px;">｜瞬間英作文</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</deck-stage>
+
+<!-- autoplay UI -->
+<div class="ap-progress"><i id="apFill"></i></div>
+<button class="ap-btn" id="apBtn" aria-label="自動再生の再生・停止">
+  <svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+  <svg class="ic-play" viewBox="0 0 24 24" fill="currentColor"><path d="M7 5.5v13a1 1 0 0 0 1.54.84l10-6.5a1 1 0 0 0 0-1.68l-10-6.5A1 1 0 0 0 7 5.5z"/></svg>
+  <span id="apLabel">自動再生</span>
+</button>
+
+<script src="deck-stage.js"></script>
+<script>
+  // Count-up flourish for any [data-count] element on the slide that becomes active.
+  (function () {
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.addEventListener('slidechange', (e) => {
+      const slide = e.detail && e.detail.slide;
+      if (!slide) return;
+      slide.querySelectorAll('[data-count]').forEach((el) => {
+        const target = parseInt(el.dataset.count, 10) || 0;
+        if (reduce || document.documentElement.hasAttribute('data-export')) { el.textContent = target; return; }
+        const dur = 1100, delay = 450, t0 = performance.now();
+        el.textContent = '0';
+        const tick = (now) => {
+          const p = Math.min(1, Math.max(0, (now - t0 - delay) / dur));
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(eased * target);
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+        // safety net: guarantee the final value even if rAF is throttled
+        setTimeout(() => { el.textContent = target; }, delay + dur + 120);
+      });
+    });
+  })();
+
+  // ---------- autoplay (auto-advance + loop) ----------
+  (function () {
+    const deck   = document.querySelector('deck-stage');
+    const fill   = document.getElementById('apFill');
+    const btn    = document.getElementById('apBtn');
+    const label  = document.getElementById('apLabel');
+    const DEFAULT = 6000;
+    let playing = true, timer = null, fillAnim = null;
+
+    const durOf = (slide) => parseInt(slide && slide.dataset.dur, 10) || DEFAULT;
+
+    function clearAll() {
+      clearTimeout(timer); timer = null;
+      if (fillAnim) { fillAnim.cancel(); fillAnim = null; }
+    }
+
+    function run(e) {
+      clearAll();
+      const slide = (e && e.detail && e.detail.slide) || deck.querySelector('[data-deck-active]');
+      const index = (e && e.detail && typeof e.detail.index === 'number') ? e.detail.index : 0;
+      const total = (e && e.detail && e.detail.total) || deck.children.length;
+      if (!playing) { fill.style.transform = 'scaleX(0)'; return; }
+      const dur = durOf(slide);
+      fillAnim = fill.animate(
+        [{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }],
+        { duration: dur, easing: 'linear', fill: 'forwards' }
+      );
+      timer = setTimeout(() => deck.goTo((index + 1) % total), dur);
+    }
+
+    function setPlaying(on) {
+      playing = on;
+      btn.toggleAttribute('data-paused', !on);
+      label.textContent = on ? '自動再生' : '停止中';
+      if (on) run(); else clearAll();
+    }
+
+    document.addEventListener('slidechange', run);
+    btn.addEventListener('click', () => setPlaying(!playing));
+    // start once the deck is ready
+    if (deck.querySelector('[data-deck-active]')) run();
+  })();
+</script>
+</body>
+</html>
